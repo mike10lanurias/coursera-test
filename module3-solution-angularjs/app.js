@@ -60,6 +60,10 @@
                 url: (ApiBasePath + "/menu_items.json")
             }).then(function(response) {
               var foundItems = [];
+
+              if (searchTerm == '') {
+                return foundItems;
+              }
               for (const key in response.data) {
                 for (var i = 0; i < response.data[key]['menu_items'].length; i++) {
                   if(response.data[key]['menu_items'][i]['description'] &&
