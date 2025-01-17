@@ -1,0 +1,54 @@
+<div class="container">
+<h1>Sign Up</h1>
+
+<fieldset>
+      <form name='signUpForm' novalidate>
+        <label for="firstName">First name:</label>
+        <input type="text" name="firstName" placeholder="First Name"
+          ng-model="signupCtrl.firstName" minlength="2" class="form-control" required>
+          <span ng-if="(signUpForm.firstName.$error.minlength || signUpForm.firstName.$error.required) && signUpForm.firstName.$touched"
+              style="color: white; background-color: red">First name must be at least 2 characters</span>
+          <br>
+          <label for="lastName">Last name:</label>
+          <input type="text" name="lastName" id="lastName" placeholder="Last Name"
+              ng-model="signupCtrl.lastName" minlength="2" class="form-control" required>
+            <span ng-if="(signUpForm.lastName.$error.minlength || signUpForm.lastName.$error.required) && signUpForm.lastName.$touched"
+              style="color: white; background-color: red">Last name must be at least 2 characters</span>
+          <br>
+         <label for="email">E-mail address:</label>
+         <input type="email" name="email" id="email" placeholder="username@email.com"
+            ng-model="signupCtrl.email" minlength="2" class="form-control" required>
+          <span ng-if="(signUpForm.email.$invalid || signUpForm.email.$error.required) && signUpForm.email.$touched"
+            style="color: white; background-color: red">E-mail address is invalid</span>
+            <br>
+          <label for="phone">Phone number:</label>
+          <input type="phone" name="phone" id="phone" placeholder="###-###-####"
+           ng-model="signupCtrl.phone" pattern="(\d{3})-(\d{3})-(\d{4})" class="form-control" required>
+         <span ng-if="signUpForm.phone.$invalid && signUpForm.phone.$touched"
+           style="color: white; background-color: red">Phone number must be in ###-###-####.</span>
+            <br>
+            <label for="favoriteDish">Favorite Dish:</label>
+        <input type="text" name="favoriteDish" id="favoriteDish" placeholder="Enter short name of favorite dish"
+            ng-model="signupCtrl.favoriteDish" minlength="2" ng-maxlength="4" class="form-control">
+          <span ng-if="(signUpForm.favoriteDish.$error.minlength || signUpForm.favoriteDish.$error.minlength) && signUpForm.favoriteDish.$touched"
+            style="color: white; background-color: red">Short name of dish is 1-2 letters and 1-2 numbers</span>
+          <span ng-if="signupCtrl.registrationSuccess && !signupCtrl.favoriteDishFound"
+            style="color:white; background-color: red">No such menu number exists! ;-(</span>
+          <br>
+
+          <button class="btn btn-primary pull-right" ng-disabled="signUpForm.$invalid"
+            ng-click="signupCtrl.signUp($event)">Submit</button>
+
+            <div class="col-md-6">
+              <div class="panel panel-success" ng-if="signupCtrl.registrationSuccess">
+                <div class="panel-heading">Success!!</div>
+                <div class="panel-body" style="color: green">
+                  <p>Your information has been saved.</p>
+
+                </div>
+              </div>
+            </div>
+      </form>
+    </fieldset>
+
+</div>
